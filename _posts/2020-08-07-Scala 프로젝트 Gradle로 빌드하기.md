@@ -28,23 +28,23 @@ categories: BIGDATA
 
   ![image]({{site.url}}/img/posts/2020-08-07_ScalaGradle/SCALA_GRADLE5.PNG){: width="600" height="400"}
 
-  ![image]({{site.url}}/img/posts/2020-08-07_ScalaGradle/SCALA_GRADLE6.PNG){: width="300" height="500"}
+  ![image]({{site.url}}/img/posts/2020-08-07_ScalaGradle/SCALA_GRADLE6.PNG){: width="300" height="400" .aligncenter}
 
   - scala가 설치되어있지 않다면 아래와 같은 에러가 발생됨.
 
-  ![image]({{site.url}}/img/posts/2020-08-07_ScalaGradle/SCALA_GRADLE7.PNG){: width="300" height="500"}
+  ![image]({{site.url}}/img/posts/2020-08-07_ScalaGradle/SCALA_GRADLE7.PNG){: width="300" height="400" .aligncenter}
 
   - ok 버튼을 클릭
 
-  ![image]({{site.url}}/img/posts/2020-08-07_ScalaGradle/SCALA_GRADLE8.PNG){: width="300" height="500"}
+  ![image]({{site.url}}/img/posts/2020-08-07_ScalaGradle/SCALA_GRADLE8.PNG){: width="300" height="400" .aligncenter}
 
   - Download 클릭으로 scala sdk 설치.
 
-  ![image]({{site.url}}/img/posts/2020-08-07_ScalaGradle/SCALA_GRADLE9.PNG){: width="300" height="500"}
+  ![image]({{site.url}}/img/posts/2020-08-07_ScalaGradle/SCALA_GRADLE9.PNG){: width="300" height="400" .aligncenter}
 
   - ok 버튼 클릭으로 scala 추가 완료
 
-  ![image]({{site.url}}/img/posts/2020-08-07_ScalaGradle/SCALA_GRADLE10.PNG){: width="300" height="500"}
+  ![image]({{site.url}}/img/posts/2020-08-07_ScalaGradle/SCALA_GRADLE10.PNG){: width="300" height="400" .aligncenter}
 
 ## 4. scala Class 만들기
   - 3번에서 scala를 정상적으로 추가해줬다면 Scala class 파일을 생성할수 있습니다.

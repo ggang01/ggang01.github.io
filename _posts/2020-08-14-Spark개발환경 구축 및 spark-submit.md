@@ -145,7 +145,7 @@ target에 jar 파일 생성 완료.
 spark-submit --master yarn --class com.khg.csvToORC --name "csvToORC"  /home/mapr/sparkConv-1.0.jar
 ```
 
-![Alt text]({{site.url}}/img/posts/2020-08-14-ScalaMaven/완료.PNG){: width="400" height="100"}
+![Alt text]({{site.url}}/img/posts/2020-08-14-ScalaMaven/완료.PNG){: width="750" height="200"}
 
 ## 5. pom.xml
 ``` xml

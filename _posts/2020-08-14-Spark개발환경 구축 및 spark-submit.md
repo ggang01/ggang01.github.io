@@ -43,7 +43,7 @@ Version:1.6
 ![Alt text]({{site.url}}/img/posts/2020-08-14-ScalaMaven/surefire삭제.PNG){: width="700" height="300"}
 
 2.4 shade 플러그인 추가.
-```
+``` xml
 <plugin>
      <groupId>org.apache.maven.plugins</groupId>
      <artifactId>maven-shade-plugin</artifactId>
@@ -74,7 +74,7 @@ Version:1.6
 ![Alt text]({{site.url}}/img/posts/2020-08-14-ScalaMaven/shade추가.PNG){: width="700" height="300"}
 
 2.5 scala 관련 디펜던시 추가.
-```
+``` xml
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.12</artifactId>
@@ -126,14 +126,19 @@ object csvToORC {
 3.2 컴파일
 
 컴파일은 우측 메이븐 -> Lifecycle -> clean, complie, package 순으로 진행한다.
+
+
 ![Alt text]({{site.url}}/img/posts/2020-08-14-ScalaMaven/컴파일.PNG){: width="700" height="300"}
 
 3.3 jar 생성
 
 target에 jar 파일 생성 완료.
+
+
 ![Alt text]({{site.url}}/img/posts/2020-08-14-ScalaMaven/jar생성.PNG){: width="300" height="400"}
 
 ## 4. spark-submit
+
 서버에 jar 파일 및 테스트데이터 업로드 후 spark-submit 진행.
 
 ```
@@ -141,3 +146,145 @@ spark-submit --master yarn --class com.khg.csvToORC --name "csvToORC"  /home/map
 ```
 
 ![Alt text]({{site.url}}/img/posts/2020-08-14-ScalaMaven/완료.PNG){: width="500" height="300"}
+
+## 5. pom.xml
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.khg</groupId>
+    <artifactId>sparkConv</artifactId>
+    <version>1.0</version>
+    <name>${project.artifactId}</name>
+    <description>My wonderfull scala app</description>
+    <inceptionYear>2015</inceptionYear>
+    <licenses>
+        <license>
+            <name>My License</name>
+            <url>http://....</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <repositories>
+        <repository>
+            <id>mapr-releases</id>
+            <url>https://repository.mapr.com/maven/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+    <properties>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+        <encoding>UTF-8</encoding>
+        <scala.version>2.11.5</scala.version>
+        <scala.compat.version>2.11</scala.compat.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        <!-- hadoop 설정 추가 -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>2.7.0-mapr-1808</version>
+        </dependency>
+        <!--Spark 설정 추가 -->
+        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.12</artifactId>
+            <version>2.4.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.12</artifactId>
+            <version>2.4.4</version>
+        </dependency>
+        <!--Spark 설정 추가 끝 -->
+        <!--    &lt;!&ndash; Test &ndash;&gt;
+            <dependency>
+              <groupId>junit</groupId>
+              <artifactId>junit</artifactId>
+              <version>4.11</version>
+              <scope>test</scope>
+            </dependency>
+            <dependency>
+              <groupId>org.specs2</groupId>
+              <artifactId>specs2-core_${scala.compat.version}</artifactId>
+              <version>2.4.16</version>
+              <scope>test</scope>
+            </dependency>
+            <dependency>
+              <groupId>org.scalatest</groupId>
+              <artifactId>scalatest_${scala.compat.version}</artifactId>
+              <version>2.2.4</version>
+              <scope>test</scope>
+            </dependency>-->
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/scala</sourceDirectory>
+        <!-- <testSourceDirectory>src/test/scala</testSourceDirectory>-->
+        <plugins>
+            <plugin>
+                <!-- see http://davidb.github.com/scala-maven-plugin -->
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <!--<goal>testCompile</goal>-->
+                        </goals>
+                        <configuration>
+                            <args>
+                                <!--   <arg>-make:transitive</arg>
+                                   <arg>-dependencyfile</arg>
+                                   <arg>${project.build.directory}/.scala_dependencies</arg>-->
+                            </args>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <filters>
+                        <filter>
+                            <artifact>*.*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.SF</exclude>
+                                <exclude>META_INF/*.DSA</exclude>
+                                <exclude>META_INF/*.RSA</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                    <finalName>${project.artifactId}-khg-${project.version}</finalName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+```

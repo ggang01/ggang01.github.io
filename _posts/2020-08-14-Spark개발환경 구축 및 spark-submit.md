@@ -145,10 +145,10 @@ target에 jar 파일 생성 완료.
 spark-submit --master yarn --class com.khg.csvToORC --name "csvToORC"  /home/mapr/sparkConv-1.0.jar
 ```
 
-![Alt text]({{site.url}}/img/posts/2020-08-14-ScalaMaven/완료.PNG){: width="350" height="200"}
+![Alt text]({{site.url}}/img/posts/2020-08-14-ScalaMaven/완료.PNG){: width="400" height="100"}
 
 ## 5. pom.xml
-```xml
+``` xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>

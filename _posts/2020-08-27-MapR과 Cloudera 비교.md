@@ -14,14 +14,13 @@ MapR 사업성 검토를위해 기존에 사업을 진행하고 있는 Cloudera�
 
 <center><img src="{{site.url}}/img/posts/2020-08-27-MapR_Cloudera/설정.PNG" width="450" height="250"></center>
 <br/>
-
 ## 2. 성능
 2.1 Sqoop, Hadoop fs –put 성능
  - Cloudera 와 MapR은 모두 3개의 노드로 구성되어있고 하드웨어 사양은 아래와 같다.
 <br/>
 
  |항목|사양|
- |:------:|:------:|
+ |------|------|
  |CPU|v4core|
  |Memory|16G|
  |OS|CentOS 7|

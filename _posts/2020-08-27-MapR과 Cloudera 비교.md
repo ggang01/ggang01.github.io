@@ -18,15 +18,16 @@ MapR 사업성 검토를위해 기존에 사업을 진행하고 있는 Cloudera�
 ## 2. 성능
 2.1 Sqoop, Hadoop fs –put 성능
  - Cloudera 와 MapR은 모두 3개의 노드로 구성되어있고 하드웨어 사양은 아래와 같다.
+<br/>
 
+ |항목|사양|
+ |:---:|:---:|
+ |CPU|v4core|
+ |Memory|16G|
+ |OS|CentOS 7|
+ |Disk|SSD 100G|
 
-|항목|사양|
-|:---:|:---:|
-|CPU|v4core|
-|Memory|16G|
-|OS|CentOS 7|
-|Disk|SSD 100G|
-
+<br/>
 
 - MAPR은 Hadoop 파일 시스템에 데이터를 올리는 put 명령어는 빠른 성능을 보이지만 데이터를 내려 받는 get 명령어는 비슷, Sqoop은 CLOUDERA가 우세한 성능을 보여줬습니다.
 - 테스트에 실행된 Sqoop의 맵 테스크 개수는 8(기본 맵 테스트 개수는 4 –m 8)이며 Direct 모드로 실행했습니다.
